@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 
 
@@ -18,5 +20,9 @@ class SourceFile(models.Model):
     body = models.TextField(blank=True)
     rendered = models.TextField(blank=True)
 
+    @property
+    def full_path(self):
+        return os.path.join(self.path, self.file_name)
+
     def __unicode__(self):
-        return self.file_name
+        return self.full_path
