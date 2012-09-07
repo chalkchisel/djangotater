@@ -6,6 +6,9 @@ class Version(models.Model):
     name = models.CharField(max_length=100)
     identifier = models.CharField(max_length=100)
 
+    def __unicode__(self):
+        return self.name
+
 
 class SourceFile(models.Model):
     version = models.ForeignKey(Version)
@@ -15,6 +18,9 @@ class SourceFile(models.Model):
 
     body = models.TextField(blank=True)
     rendered = models.TextField(blank=True)
+
+    def __unicode__(self):
+        return self.file_name
 
     @property
     def file_name(self):
