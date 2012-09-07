@@ -1,4 +1,3 @@
-import os
 from django.db import models
 
 
@@ -21,7 +20,3 @@ class SourceFile(models.Model):
 
     def __unicode__(self):
         return self.file_name
-
-    @property
-    def file_name(self):
-        return os.path.split(self.path)[1]
