@@ -1,5 +1,6 @@
 import os
 from django.db import models
+from mptt.models import MPTTModel, TreeForeignKey
 
 
 class Version(models.Model):
@@ -7,8 +8,10 @@ class Version(models.Model):
     identifier = models.CharField(max_length=100)
 
 
-class SourceFile(models.Model):
+class SourceFile(MPTTModel):
     version = models.ForeignKey(Version)
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
+
     path = models.CharField(max_length=5000)
 
     body = models.TextField()
