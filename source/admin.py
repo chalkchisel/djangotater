@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from.models import Version, SourceFile
+from .models import Version, SourceFile
 
 
 class VersionAdmin(admin.ModelAdmin):
