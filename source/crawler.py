@@ -26,6 +26,8 @@ class SourceCrawler(object):
 
     def import_files(self, path, filenames):
         for filename in filenames:
+            if filename.endswith('.pyc'):
+                continue
             full_path = os.path.join(path, filename)
             body = open(full_path, 'r').readlines()
             SourceFile.objects.create(**{
