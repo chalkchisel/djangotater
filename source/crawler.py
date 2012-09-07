@@ -29,7 +29,8 @@ class SourceCrawler(object):
             if filename.endswith('.pyc'):
                 continue
             full_path = os.path.join(path, filename)
-            body = open(full_path, 'r').readlines()
+            with open(full_path, 'r') as f:
+                body = f.readlines()
             SourceFile.objects.create(**{
                 'version': self.version,
                 'path': path,
