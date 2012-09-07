@@ -6,7 +6,7 @@ from source.crawler import SourceCrawler
 
 
 class Command(BaseCommand):
-    args = '<root>'
+    args = '<root identifier>'
     help = 'Imports the specified directory of files into the database.'
     option_list = BaseCommand.option_list + (
         make_option('--name',
