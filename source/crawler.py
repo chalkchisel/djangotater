@@ -8,9 +8,13 @@ class CrawlError(Exception):
 
 
 class SourceCrawler(object):
-    def __init__(self, identifier, root):
+    def __init__(self, root, identifier, name):
+        self.root = root
+        self.identifier = identifier
+        self.name = name
+
         version, created = Version.objects.get_or_create(
-            identifier=identifier, defaults={'name': identifier})
+            identifier=identifier, defaults={'name': name})
 
         if not created:
             error_message = \
@@ -19,7 +23,6 @@ class SourceCrawler(object):
                 version.name))
 
         self.version = version
-        self.root = root
 
     def import_files(self, path, filenames):
         for filename in filenames:
