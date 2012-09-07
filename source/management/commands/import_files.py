@@ -17,9 +17,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, root, identifier, *args, **options):
-        identifier = options['identifier']
         name = options['name']
-        identifier = options['identifier']
 
         if name is None:
             name = identifier
