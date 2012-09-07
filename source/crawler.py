@@ -1,5 +1,9 @@
 import os
 
+from pygments import highlight
+from pygments.lexers import PythonLexer
+from pygments.formatters import HtmlFormatter
+
 from .models import Version, SourceFile
 
 
@@ -31,11 +35,13 @@ class SourceCrawler(object):
             full_path = os.path.join(path, filename)
             with open(full_path, 'r') as f:
                 body = f.read()
+            html = highlight(body, PythonLexer(), HtmlFormatter())
             SourceFile.objects.create(**{
                 'version': self.version,
                 'path': path,
                 'file_name': filename,
                 'body': body,
+                'rendered': html,
                 })
 
     def crawl_tree(self):
