@@ -9,10 +9,6 @@ class Command(BaseCommand):
     args = '<root>'
     help = 'Imports the specified directory of files into the database.'
     option_list = BaseCommand.option_list + (
-        make_option('--identifier',
-            action='store',
-            dest='identifier',
-            help='The identifier for the revision that is being imported.'),
         make_option('--name',
             action='store',
             dest='name',
@@ -20,12 +16,10 @@ class Command(BaseCommand):
             help='The name of the revision that is being imported.'),
         )
 
-    def handle(self, root, *args, **options):
+    def handle(self, root, identifier, *args, **options):
         identifier = options['identifier']
         name = options['name']
-
-        if identifier is None:
-            identifier = root
+        identifier = options['identifier']
 
         if name is None:
             name = identifier
