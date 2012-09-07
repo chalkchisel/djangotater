@@ -30,7 +30,7 @@ class SourceCrawler(object):
                 continue
             full_path = os.path.join(path, filename)
             with open(full_path, 'r') as f:
-                body = f.readlines()
+                body = f.read()
             SourceFile.objects.create(**{
                 'version': self.version,
                 'path': path,
